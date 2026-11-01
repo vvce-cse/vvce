@@ -1,17 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Vidyavardhaka College of Engineering, Mysuru: autonomous institute affiliated to VTU, NAAC A grade, NBA accredited. CET code E071, COMED-K E147.">
+<link rel="icon" type="image/png" href="vvce.png">
 <title>VVCE Home Redesign</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700;800&family=Noto+Sans+Kannada:wght@600;800&display=swap">
+<style>
+html{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
 <style>
 /* Layout: dense 1280px grid on white; gold 3D pill menus, white banner with photo + notices, paired sections side by side */
 :root{
   --bg:#FFFFFF; --card:#FFFFFF; --soft:#F5F7FF; --ink:#0B1440; --muted:#4A5580; --line:#E0E6FB;
   --blue:#1838E8; --blue-deep:#0B1F9E; --blue-edge:#0A1A80;
   --gold:#FFB703; --gold-edge:#C98A00;
-  --coral:#FF3D68; --coral-edge:#C41E47;
-  --green:#00B37E; --green-edge:#007A55;
-  --sky:#00A6FB; --sky-edge:#0077B6;
-  --violet:#7B3FF2; --violet-edge:#5420C2;
+  --coral:#1838E8; --coral-edge:#0A1A80;
+  --green:#0B1F9E; --green-edge:#06115E;
+  --sky:#2747F0; --sky-edge:#0A1A80;
+  --violet:#0B1F9E; --violet-edge:#06115E;
   --glass-strong:rgba(255,255,255,.95); --glass-line:rgba(255,255,255,.9);
   --navy:#081257; --name:#000000;
   --display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
@@ -53,14 +65,14 @@ section.hero{padding-block:0 8px}
 .btn-blue:active{box-shadow:0 1px 0 var(--blue-edge)}
 
 /* admission codes strip */
-.codes{background:linear-gradient(90deg,var(--blue-deep),#1838E8 55%,var(--violet));color:#fff}
+.codes{background:linear-gradient(90deg,#06115E,var(--blue-deep));color:#fff}
 .codes .wrap{display:flex;align-items:center;gap:12px;padding-block:10px 12px;padding-inline:6px;overflow-x:auto;scrollbar-width:none}
 .codes .wrap::-webkit-scrollbar{display:none}
 .codes .lbl{font:800 11.5px var(--display);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:#FFE08A}
 .code{flex:none;display:flex;align-items:baseline;gap:6px;background:#fff;color:#0B1440;border-radius:8px;padding:3px 10px;box-shadow:0 3px 0 rgba(4,10,60,.55)}
 .code small{font:700 11px var(--body);color:#4A5580;white-space:nowrap}
 .code b{font:800 14.5px var(--mono);letter-spacing:.03em}
-.c1 b{color:#1838E8}.c2 b{color:#E0154A}.c3 b{color:#00935F}.c4 b{color:#C27400}.c5 b{color:#6A2BE0}.c6 b{color:#0077B6}
+.code b{color:#0B1F9E}
 @media (min-width:1180px){.codes .wrap{justify-content:center}}
 
 /* header */
@@ -129,7 +141,7 @@ header.main .wrap{display:flex;align-items:center;gap:14px;padding-block:6px}
 .lname{font:800 clamp(12px,1.15vw,15px)/1.25 var(--body);color:#fff;max-width:18ch;text-shadow:0 2px 6px rgba(0,0,0,.45);transition:opacity .35s}
 @property --ra{syntax:"<angle>";inherits:false;initial-value:0deg}
 .lcircle{position:relative;flex:none;width:clamp(60px,6.6vw,94px);height:clamp(60px,6.6vw,94px);border-radius:50%;display:grid;place-items:center;
-  border:5px solid transparent;background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ra),#FFC21A,#00A6FB,#7B3FF2,#FF3D68,#FFC21A) border-box;
+  border:5px solid transparent;background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ra),#FFC21A,#6F8BFF,#3B57FF,#FFC21A,#FFC21A) border-box;
   box-shadow:0 5px 0 rgba(4,10,58,.6),0 14px 24px -8px rgba(0,0,0,.6);animation:ring 6s linear infinite}
 @keyframes ring{to{--ra:360deg}}
 .lcircle img,.lcircle b{grid-area:1/1;width:80%;height:80%;object-fit:contain;display:grid;place-items:center;font:800 clamp(13px,1.4vw,19px) var(--display);color:#1838E8}
@@ -275,11 +287,85 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
 .cta{box-shadow:0 6px 0 var(--violet-edge),0 16px 26px -10px rgba(8,18,87,.45),0 34px 48px -24px rgba(8,18,87,.55)}
 .mini div,.cal,.why i{filter:drop-shadow(0 4px 5px rgba(8,18,87,.25))}
 
+/* ===== 60-30-10 system: 60% white/soft, 30% navy-blue, 10% gold. One card component everywhere. ===== */
+:root{--surface:#FFFFFF;--soft:#F5F7FC;--line:#E1E6F2;--muted:#55607F;--primary:#1838E8;--navy:#0B1F9E;--navy-2:#06115E;--accent:#FFB703;
+  --edge:#D3DAEE;--radius:14px;--lift:0 3px 0 var(--edge),0 10px 18px -8px rgba(11,31,158,.22),0 22px 34px -22px rgba(11,31,158,.32)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#0E1640;--soft:#0B1236;--line:#222D66;--muted:#A8B2E0;--primary:#5A76FF;--edge:#030619}}
+:root[data-theme="dark"]{--surface:#0E1640;--soft:#0B1236;--line:#222D66;--muted:#A8B2E0;--primary:#5A76FF;--edge:#030619}
+body{background:var(--surface)}
+.alt{background:var(--soft)}
+h2{color:var(--ink)}
+
+/* eyebrow: quiet label with a gold tick instead of a coloured pill */
+.eyebrow{background:none;color:var(--primary);box-shadow:none;padding:0 0 0 14px;position:relative;font-size:11px;letter-spacing:.16em}
+.eyebrow::before{content:"";position:absolute;left:0;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:2px;background:var(--accent)}
+.panel.blue .eyebrow{color:#FFE08A}
+.ex{display:none}
+
+/* one card component */
+.stat,.why div,.tl div,.prog,.ev li,.panel:not(.blue){
+  background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--primary);border-radius:var(--radius);box-shadow:var(--lift)}
+.stat{border-left:1px solid var(--line)}
+.stat .num{color:var(--navy)}
+:root[data-theme="dark"] .stat .num{color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stat .num{color:#fff}}
+.stat,.why div,.prog,.tl div,.ev li{transition:transform .15s,box-shadow .15s}
+.stat:hover,.why div:hover,.prog:hover,.tl div:hover,.ev li:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--edge),0 16px 24px -10px rgba(11,31,158,.28),0 30px 44px -22px rgba(11,31,158,.38)}
+.panel:not(.blue){padding:18px}
+.why div{padding:14px}
+.tl div{padding:10px}
+.tl b{color:var(--primary)}
+.why i{background:var(--navy);color:var(--accent);box-shadow:none}
+.prog .codetag,.prog{--c:var(--primary)}
+.prog .codetag{background:var(--navy)}
+.chip{border-color:var(--line);color:var(--muted)}
+.chip.nba{background:var(--accent);color:#2A1A00}
+.cal{background:var(--navy)!important;box-shadow:0 3px 0 var(--navy-2)!important}
+.cal b{color:#fff}.cal span{color:var(--accent)}
+
+/* 30% bands */
+.panel.blue{background:linear-gradient(135deg,var(--navy-2),var(--navy));border-radius:var(--radius);box-shadow:var(--lift)}
+.recruit span{border-radius:10px;box-shadow:0 3px 0 rgba(0,0,0,.25);color:var(--navy)}
+.pts div{border-radius:10px}
+.pts b{color:var(--accent)}
+.portal a{background:var(--navy)!important;border-radius:var(--radius);box-shadow:0 4px 0 var(--navy-2),0 12px 18px -8px rgba(11,31,158,.4)!important}
+.portal a strong{color:#fff}.portal a span{color:#C9D3F5}
+.portal a:hover{background:var(--primary)!important}
+.cta{background:linear-gradient(120deg,var(--navy-2),var(--navy) 60%,var(--primary));border-radius:var(--radius);box-shadow:var(--lift)}
+.cta h2{color:#fff}
+.cta-codes div{border-radius:10px}
+.cta-codes b{color:var(--navy)}
+footer{border-top-color:var(--accent)}
+
+/* 10% accent: buttons and highlights only */
+.btn-blue{background:linear-gradient(#2747F0,var(--navy));box-shadow:0 4px 0 var(--navy-2),0 10px 16px -8px rgba(11,31,158,.5)}
+.apply{background:linear-gradient(#1D3BD8,var(--navy));color:#FFE08A;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 3px 0 var(--navy-2),0 7px 12px -6px rgba(11,31,158,.6)}
+.drop a::before{background:var(--primary)!important}
+.drop a:nth-child(even)::before{background:var(--accent)!important}
+.dots button[aria-current="true"]{background:var(--accent)}
+.lcircle{background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ra),#FFC21A,#1838E8,#FFC21A,#1838E8,#FFC21A) border-box}
+@keyframes codepop{0%,100%{transform:scale(1)}5%{transform:scale(1.16);box-shadow:0 0 0 3px #FFC21A,0 5px 0 rgba(4,10,60,.55),0 12px 20px -6px rgba(0,0,0,.5)}12%{transform:scale(1)}}
+
+.pair{align-items:stretch}
+.prog-grid{grid-template-columns:repeat(auto-fill,minmax(186px,1fr))}
+/* phone fixes */
+@media (max-width:600px){
+  header.main .wrap{gap:8px}
+  .emblem{width:40px;height:40px}
+  .brand strong{font-size:9.5px;white-space:normal;max-width:118px;text-align:center;line-height:1.25}
+  .bar{min-width:44px}
+  .textpanel .kname,.textpanel .year{display:none}
+  .textpanel .small{letter-spacing:.12em}
+  .logoshow{gap:8px}
+  .lname{font-size:11px;max-width:12ch}
+}
+
 .rise{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}.d2{animation-delay:.08s}.d3{animation-delay:.16s}
 @keyframes rise{from{transform:translateY(12px)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-
+</head>
+<body>
 <!-- ===== Admission codes ===== -->
 <div class="codes" role="region" aria-label="Admission codes">
   <div class="wrap">
@@ -298,7 +384,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
   <div class="wrap">
     <a class="brand" href="#" aria-label="VVCE home">
       <span class="emblem"><img src="vvce.png" alt="VVCE emblem" width="42" height="42"></span>
-      <strong lang="kn">ವಿದ್ಯಾವರ್ಧಕ ತಾಂತ್ರಿಕ ಮಹಾವಿದ್ಯಾಲಯ</strong>
+      <strong lang="kn">&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3253;&#3248;&#3277;&#3239;&#3221; &#3236;&#3262;&#3202;&#3236;&#3277;&#3248;&#3263;&#3221; &#3246;&#3257;&#3262;&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3250;&#3247;</strong>
     </a>
     <nav class="bar" aria-label="Main">
       <ul class="menu" id="menu">
@@ -340,8 +426,8 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
       <defs>
         <linearGradient id="pn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B1F9E"/><stop offset=".55" stop-color="#081257"/><stop offset="1" stop-color="#040A3A"/></linearGradient>
         <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B57FF" stop-opacity=".95"/><stop offset="1" stop-color="#1838E8" stop-opacity=".15"/></linearGradient>
-        <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#7B3FF2" stop-opacity=".75"/><stop offset="1" stop-color="#7B3FF2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00A6FB" stop-opacity=".6"/><stop offset="1" stop-color="#00A6FB" stop-opacity="0"/></linearGradient>
+        <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3B57FF" stop-opacity=".75"/><stop offset="1" stop-color="#3B57FF" stop-opacity="0"/></linearGradient>
+        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6F8BFF" stop-opacity=".6"/><stop offset="1" stop-color="#6F8BFF" stop-opacity="0"/></linearGradient>
         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
       <!-- main panel with a curved S-shaped edge -->
@@ -354,15 +440,15 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
       <path d="M640 250 C655 240 668 236 680 235 C670 248 660 258 646 266 C636 272 628 274 622 274 C628 264 633 257 640 250Z" fill="#FFC21A" opacity=".85"/>
       <!-- glowing curved edge lines (the template's red line, in gold and sky) -->
       <path d="M350 400 C450 330 470 250 545 170 C600 112 650 70 690 0" fill="none" stroke="#FFC21A" stroke-width="4" filter="url(#glow)"/>
-      <path d="M380 400 C480 335 500 255 575 178 C628 122 676 78 716 0" fill="none" stroke="#00A6FB" stroke-width="1.6" opacity=".7"/>
+      <path d="M380 400 C480 335 500 255 575 178 C628 122 676 78 716 0" fill="none" stroke="#6F8BFF" stroke-width="1.6" opacity=".7"/>
     </svg>
 
     <div class="textpanel">
-      <span class="kname" lang="kn">ವಿದ್ಯಾವರ್ಧಕ ತಾಂತ್ರಿಕ ಮಹಾವಿದ್ಯಾಲಯ</span>
+      <span class="kname" lang="kn">&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3253;&#3248;&#3277;&#3239;&#3221; &#3236;&#3262;&#3202;&#3236;&#3277;&#3248;&#3263;&#3221; &#3246;&#3257;&#3262;&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3250;&#3247;</span>
       <span class="small">Vidyavardhaka College of</span>
       <h1>Engineering</h1>
       <hr>
-      <span class="year">Est. 1997 · Mysuru</span>
+      <span class="year">Est. 1997 &#183; Mysuru</span>
       <span class="sub">A stepping stone to a brighter future</span>
       <!-- Logo badge: shows these one by one. Put the image files in the banner/ folder.
            In PHP you can build this list with scandir('banner'). -->
@@ -376,13 +462,15 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
         <li data-src="banner/vtu.png" data-short="VTU">Affiliated to VTU, Belagavi</li>
         <li data-src="banner/aicte.png" data-short="AICTE">Approved by AICTE</li>
         <li data-src="banner/ugc.png" data-short="UGC">UGC Autonomous</li>
-        <li data-src="banner/nirf.png" data-short="NIRF">NIRF Participant</li>
+        <li data-src="banner/nirf.png" data-short="ARIIA">ARIIA Excellent Band</li>
+        <li data-src="banner/iic.png" data-short="IIC">Institution's Innovation Council</li>
+        <li data-src="banner/iso.png" data-short="ISO">ISO 9001:2015 Certified</li>
       </ul>
     </div>
 
     <span class="cap" id="cap" aria-live="polite">Our Gokulam campus, Mysuru</span>
-    <button class="ctrl prev" id="prev" type="button" aria-label="Previous slide">‹</button>
-    <button class="ctrl next" id="next" type="button" aria-label="Next slide">›</button>
+    <button class="ctrl prev" id="prev" type="button" aria-label="Previous slide">&#8249;</button>
+    <button class="ctrl next" id="next" type="button" aria-label="Next slide">&#8250;</button>
     <div class="dots" id="dots"></div>
   </div>
   </div>
@@ -404,7 +492,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
     <div class="about">
       <span class="eyebrow">About VVCE</span>
       <div class="head" style="margin-bottom:10px"><h2>A heritage of learning since 1949</h2></div>
-      <p>Vidyavardhaka College of Engineering was established in 1997 by Vidyavardhaka Sangha, an education society that has served Mysuru since 1949. The college is affiliated to Visvesvaraya Technological University, Belagavi, and has been autonomous since 2020–21.</p>
+      <p>Vidyavardhaka College of Engineering was established in 1997 by Vidyavardhaka Sangha, an education society that has served Mysuru since 1949. The college is affiliated to Visvesvaraya Technological University, Belagavi, and has been autonomous since 2020&#8211;21.</p>
       <div class="tl">
         <div style="--c:var(--violet)"><b>1949</b><span>Vidyavardhaka Sangha founded</span></div>
         <div style="--c:#1838E8"><b>1997</b><span>VVCE opens in Gokulam</span></div>
@@ -423,7 +511,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
       <div class="why">
         <div style="--c:#1838E8;--ce:var(--blue-edge)"><i>Cu</i><h3>Own curriculum</h3><p>Autonomous syllabus with industry input and a VTU degree.</p></div>
         <div style="--c:var(--coral);--ce:var(--coral-edge)"><i>Re</i><h3>Research culture</h3><p>Nine research centres and funded projects.</p></div>
-        <div style="--c:var(--green);--ce:var(--green-edge)"><i>In</i><h3>Industry links</h3><p>Intel, Infosys, MathWorks, Dassault Systèmes.</p></div>
+        <div style="--c:var(--green);--ce:var(--green-edge)"><i>In</i><h3>Industry links</h3><p>Intel, Infosys, MathWorks, Dassault Syst&#232;mes.</p></div>
         <div style="--c:var(--gold-edge);--ce:#8A5E00"><i>Sc</i><h3>Scholarships</h3><p>Merit and need-based support every year.</p></div>
         <div style="--c:var(--violet);--ce:var(--violet-edge)"><i>Ho</i><h3>Residential campus</h3><p>Hostels, health centre, bank, transport, sports.</p></div>
         <div style="--c:var(--sky);--ce:var(--sky-edge)"><i>My</i><h3>Mysuru living</h3><p>Calm heritage city, 16 km from the airport.</p></div>
@@ -445,16 +533,16 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
       </div>
     </div>
     <div class="prog-grid" id="progs">
-      <a class="prog p-blue" data-l="ug" href="#"><span class="codetag">B.E. · CSE</span><h3>Computer Science &amp; Engg.</h3><p>Algorithms, systems, cloud and software engineering.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
-      <a class="prog p-violet" data-l="ug" href="#"><span class="codetag">B.E. · CSE-AIML</span><h3>CSE (AI &amp; ML)</h3><p>Machine learning, deep learning and data systems.</p><div class="meta"><span class="chip">Since 2020–21</span><span class="chip">4 yrs</span></div></a>
-      <a class="prog p-sky" data-l="ug" href="#"><span class="codetag">B.E. · ISE</span><h3>Information Science &amp; Engg.</h3><p>Data management, networks, web and security.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
-      <a class="prog p-coral" data-l="ug" href="#"><span class="codetag">B.E. · ECE</span><h3>Electronics &amp; Communication</h3><p>VLSI, embedded systems and signal processing.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
-      <a class="prog p-gold" data-l="ug" href="#"><span class="codetag">B.E. · EEE</span><h3>Electrical &amp; Electronics</h3><p>Power systems, drives and renewable energy.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
-      <a class="prog p-green" data-l="ug" href="#"><span class="codetag">B.E. · ME</span><h3>Mechanical Engineering</h3><p>Design, thermal, manufacturing and automation.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
-      <a class="prog p-blue" data-l="ug" href="#"><span class="codetag">B.E. · CV</span><h3>Civil Engineering</h3><p>Structures, geotechnics and environment.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
-      <a class="prog p-violet" data-l="pg" href="#"><span class="codetag">M.Tech · T886</span><h3>M.Tech in CSE</h3><p>Advanced computing with a research dissertation.</p><div class="meta"><span class="chip">2 yrs</span><span class="chip">PGCET / GATE</span></div></a>
-      <a class="prog p-coral" data-l="pg" href="#"><span class="codetag">MBA · B315</span><h3>Business Administration</h3><p>Management with industry projects and internships.</p><div class="meta"><span class="chip">2 yrs</span><span class="chip">PGCET / KMAT</span></div></a>
-      <a class="prog p-sky" data-l="pg" href="#"><span class="codetag">MCA · C613</span><h3>Computer Applications</h3><p>Application development, data and cloud.</p><div class="meta"><span class="chip">2 yrs</span><span class="chip">PGCET</span></div></a>
+      <a class="prog p-blue" data-l="ug" href="#"><span class="codetag">B.E. &#183; CSE</span><h3>Computer Science &amp; Engg.</h3><p>Algorithms, systems, cloud and software engineering.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
+      <a class="prog p-violet" data-l="ug" href="#"><span class="codetag">B.E. &#183; CSE-AIML</span><h3>CSE (AI &amp; ML)</h3><p>Machine learning, deep learning and data systems.</p><div class="meta"><span class="chip">Since 2020&#8211;21</span><span class="chip">4 yrs</span></div></a>
+      <a class="prog p-sky" data-l="ug" href="#"><span class="codetag">B.E. &#183; ISE</span><h3>Information Science &amp; Engg.</h3><p>Data management, networks, web and security.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
+      <a class="prog p-coral" data-l="ug" href="#"><span class="codetag">B.E. &#183; ECE</span><h3>Electronics &amp; Communication</h3><p>VLSI, embedded systems and signal processing.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
+      <a class="prog p-gold" data-l="ug" href="#"><span class="codetag">B.E. &#183; EEE</span><h3>Electrical &amp; Electronics</h3><p>Power systems, drives and renewable energy.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
+      <a class="prog p-green" data-l="ug" href="#"><span class="codetag">B.E. &#183; ME</span><h3>Mechanical Engineering</h3><p>Design, thermal, manufacturing and automation.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
+      <a class="prog p-blue" data-l="ug" href="#"><span class="codetag">B.E. &#183; CV</span><h3>Civil Engineering</h3><p>Structures, geotechnics and environment.</p><div class="meta"><span class="chip nba">NBA</span><span class="chip">4 yrs</span></div></a>
+      <a class="prog p-violet" data-l="pg" href="#"><span class="codetag">M.Tech &#183; T886</span><h3>M.Tech in CSE</h3><p>Advanced computing with a research dissertation.</p><div class="meta"><span class="chip">2 yrs</span><span class="chip">PGCET / GATE</span></div></a>
+      <a class="prog p-coral" data-l="pg" href="#"><span class="codetag">MBA &#183; B315</span><h3>Business Administration</h3><p>Management with industry projects and internships.</p><div class="meta"><span class="chip">2 yrs</span><span class="chip">PGCET / KMAT</span></div></a>
+      <a class="prog p-sky" data-l="pg" href="#"><span class="codetag">MCA &#183; C613</span><h3>Computer Applications</h3><p>Application development, data and cloud.</p><div class="meta"><span class="chip">2 yrs</span><span class="chip">PGCET</span></div></a>
       <a class="prog p-green" data-l="rd" href="#"><span class="codetag">Ph.D.</span><h3>Doctoral programmes</h3><p>VTU-recognised centres in nine departments.</p><div class="meta"><span class="chip">Full / part-time</span></div></a>
       <a class="prog p-gold" data-l="rd" href="#"><span class="codetag">M.Sc (Engg.)</span><h3>M.Sc (Engg.) by Research</h3><p>Research-led master's degree under VTU.</p><div class="meta"><span class="chip">By research</span></div></a>
     </div>
@@ -465,7 +553,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
 <section>
   <div class="wrap pair">
     <div class="panel blue">
-      <div class="head"><div><span class="eyebrow">Training &amp; Placement</span><h2>Where our graduates go</h2></div><a class="more" href="#">Placement report →</a></div>
+      <div class="head"><div><span class="eyebrow">Training &amp; Placement</span><h2>Where our graduates go</h2></div><a class="more" href="#">Placement report &#8594;</a></div>
       <div class="recruit">
         <span>Infosys</span><span>Capgemini</span><span>Cognizant</span><span>ICICI Bank</span>
         <span>Intel</span><span>MathWorks</span><span>Dassault</span><span>UiPath</span>
@@ -477,12 +565,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
       </div>
     </div>
     <div class="panel">
-      <div class="head"><div><span class="eyebrow">Events</span><span class="ex">Example entries</span><h2>Happening on campus</h2></div><a class="more" href="#">All events →</a></div>
+      <div class="head"><div><span class="eyebrow">Events</span><span class="ex">Example entries</span><h2>Happening on campus</h2></div><a class="more" href="#">All events &#8594;</a></div>
       <ul class="ev">
-        <li><div class="cal" style="--c:#1838E8;--ce:var(--blue-edge)"><b>14</b><span>Nov</span></div><div><h3>Hackathon: 24-hour build sprint</h3><p>Dept. of CSE · Open to all branches</p></div></li>
-        <li><div class="cal" style="--c:var(--coral);--ce:var(--coral-edge)"><b>20</b><span>Nov</span></div><div><h3>Industry talk on VLSI careers</h3><p>Dept. of ECE · Seminar hall</p></div></li>
-        <li><div class="cal" style="--c:var(--green);--ce:var(--green-edge)"><b>27</b><span>Nov</span></div><div><h3>Faculty development programme</h3><p>IQAC · Outcome-based education</p></div></li>
-        <li><div class="cal" style="--c:var(--violet);--ce:var(--violet-edge)"><b>05</b><span>Dec</span></div><div><h3>Annual sports meet</h3><p>Physical Education · Main ground</p></div></li>
+        <li><div class="cal" style="--c:#1838E8;--ce:var(--blue-edge)"><b>14</b><span>Nov</span></div><div><h3>Hackathon: 24-hour build sprint</h3><p>Dept. of CSE &#183; Open to all branches</p></div></li>
+        <li><div class="cal" style="--c:var(--coral);--ce:var(--coral-edge)"><b>20</b><span>Nov</span></div><div><h3>Industry talk on VLSI careers</h3><p>Dept. of ECE &#183; Seminar hall</p></div></li>
+        <li><div class="cal" style="--c:var(--green);--ce:var(--green-edge)"><b>27</b><span>Nov</span></div><div><h3>Faculty development programme</h3><p>IQAC &#183; Outcome-based education</p></div></li>
+        <li><div class="cal" style="--c:var(--violet);--ce:var(--violet-edge)"><b>05</b><span>Dec</span></div><div><h3>Annual sports meet</h3><p>Physical Education &#183; Main ground</p></div></li>
       </ul>
     </div>
   </div>
@@ -494,15 +582,15 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
     <div>
       <div class="head"><div><span class="eyebrow">Online Services</span><h2>Sign in to your space</h2></div></div>
       <div class="portal">
-        <a href="#" style="--c:#1838E8;--ce:var(--blue-edge)"><strong>Student →</strong><span>Profile, attendance, results</span></a>
-        <a href="#" style="--c:var(--coral);--ce:var(--coral-edge)"><strong>Faculty →</strong><span>Profile, publications, CIE</span></a>
-        <a href="#" style="--c:var(--green);--ce:var(--green-edge)"><strong>IQAC →</strong><span>Quality reports and audits</span></a>
-        <a href="#" style="--c:var(--violet);--ce:var(--violet-edge)"><strong>Alumni →</strong><span>Register and stay connected</span></a>
+        <a href="#" style="--c:#1838E8;--ce:var(--blue-edge)"><strong>Student &#8594;</strong><span>Profile, attendance, results</span></a>
+        <a href="#" style="--c:var(--coral);--ce:var(--coral-edge)"><strong>Faculty &#8594;</strong><span>Profile, publications, CIE</span></a>
+        <a href="#" style="--c:var(--green);--ce:var(--green-edge)"><strong>IQAC &#8594;</strong><span>Quality reports and audits</span></a>
+        <a href="#" style="--c:var(--violet);--ce:var(--violet-edge)"><strong>Alumni &#8594;</strong><span>Register and stay connected</span></a>
       </div>
     </div>
     <div class="cta">
       <div class="cta-top">
-        <div><h2>Admissions 2027–28 open soon</h2><p>Use these college codes in your counselling options.</p></div>
+        <div><h2>Admissions 2027&#8211;28 open soon</h2><p>Use these college codes in your counselling options.</p></div>
         <a class="btn btn-gold" href="#">Admission enquiry</a>
       </div>
       <div class="cta-codes">
@@ -525,7 +613,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
         <img src="vvce.png" alt="" width="44" height="44">
         <div>
           <strong>Vidyavardhaka College of Engineering</strong>
-          <p>P.B. No. 206, Kannada Sahithya Parishath Road, III Stage, Gokulam, Mysuru – 570 002, Karnataka</p>
+          <p>P.B. No. 206, Kannada Sahithya Parishath Road, III Stage, Gokulam, Mysuru &#8211; 570 002, Karnataka</p>
           <p style="margin-top:6px">Phone: <span class="ph-no">0821-4276201</span></p>
         </div>
       </div>
@@ -533,7 +621,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--gold)}
       <div><h4>Academics</h4><ul><li><a href="#">Departments</a></li><li><a href="#">Autonomous</a></li><li><a href="#">VVCE Journals</a></li><li><a href="#">Virtual Tour</a></li><li><a href="#">NBA DCS</a></li></ul></div>
       <div><h4>Connect</h4><ul><li><a href="#">Contact us</a></li><li><a href="#">Alumni Portal</a></li><li><a href="#">Backlog exam fee payment</a></li><li><a href="#">Grievance redressal</a></li><li><a href="#">Anti-ragging</a></li></ul></div>
     </div>
-    <div class="f-bot"><span>© 2026 Vidyavardhaka College of Engineering, Mysuru</span><span>Affiliated to VTU, Belagavi · Approved by AICTE</span></div>
+    <div class="f-bot"><span>&#169; 2026 Vidyavardhaka College of Engineering, Mysuru</span><span>Affiliated to VTU, Belagavi &#183; Approved by AICTE</span></div>
   </div>
 </footer>
 
@@ -583,3 +671,5 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserve
   document.querySelectorAll('[data-count]').forEach(n=>io.observe(n));
 }
 </script>
+</body>
+</html>
