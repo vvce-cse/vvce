@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="vvce.png">
 <title>VVCE Home Light Peacock</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700;800&family=Noto+Sans+Kannada:wght@600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700;800&family=Noto+Sans+Kannada:wght@600;800&family=Baloo+Tamma+2:wght@700&family=Great+Vibes&display=swap">
 <style>
 html{color-scheme:light}
 body{margin:0}
@@ -438,6 +438,27 @@ footer{border-top-color:var(--accent)}
   .slider{background:var(--aqua)}
   .textpanel{background:linear-gradient(160deg,var(--aqua),var(--aqua-2))}
 }
+
+/* ===== bright gold lettering in the banner (no plate) ===== */
+.goldtext{display:inline-block;color:#F7B21E;
+  background:linear-gradient(110deg,#F5A623 0%,#FFD85A 18%,#FFF6CF 26%,#FFD24D 34%,#F7B21E 55%,#FFE27A 78%,#F5A623 100%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) drop-shadow(0 0 10px rgba(255,196,60,.35));animation:shimmer 5s linear infinite}
+@keyframes shimmer{from{background-position:100% 0}to{background-position:-150% 0}}
+.textpanel .kname.goldtext{font:700 clamp(17px,1.9vw,26px)/1.25 "Baloo Tamma 2","Noto Sans Kannada",var(--kn);margin-bottom:4px}
+.textpanel .sub.goldtext{font:400 clamp(24px,2.6vw,38px)/1.15 "Great Vibes","Brush Script MT",cursive;letter-spacing:.01em;text-transform:none;
+  margin-top:clamp(6px,1.2vw,14px);padding-right:4px}
+@media (max-width:600px){
+  .textpanel .kname.goldtext{display:inline-block;font-size:18px}
+  .textpanel .sub.goldtext{font-size:27px}
+}
+@media (prefers-reduced-motion:reduce){.goldtext{animation:none}}
+@media (min-width:601px){.textpanel{width:42%}.textpanel .sub.goldtext{font-size:clamp(20px,2.05vw,30px);white-space:nowrap}}
+
+.goldtext{filter:drop-shadow(0 1.5px 0 #6B4300) drop-shadow(0 3px 6px rgba(7,59,70,.35))}
+
+@media (min-width:601px) and (max-height:620px){.textpanel{gap:2px}.textpanel .year{display:none}.textpanel h1{font-size:clamp(26px,3.4vw,46px)}.textpanel .kname.goldtext{margin-bottom:0}.logoshow{margin-top:6px}}
+
 </style>
 </head>
 <body>
@@ -519,12 +540,12 @@ footer{border-top-color:var(--accent)}
     </svg>
 
     <div class="textpanel">
-      <span class="kname" lang="kn">&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3253;&#3248;&#3277;&#3239;&#3221; &#3236;&#3262;&#3202;&#3236;&#3277;&#3248;&#3263;&#3221; &#3246;&#3257;&#3262;&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3250;&#3247;</span>
+      <span class="kname goldtext" lang="kn">&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3253;&#3248;&#3277;&#3239;&#3221; &#3236;&#3262;&#3202;&#3236;&#3277;&#3248;&#3263;&#3221; &#3246;&#3257;&#3262;&#3253;&#3263;&#3238;&#3277;&#3247;&#3262;&#3250;&#3247;</span>
       <span class="small">Vidyavardhaka College of</span>
       <h1>Engineering</h1>
       <hr>
       <span class="year">Est. 1997 &#183; Mysuru</span>
-      <span class="sub">A stepping stone to a brighter future</span>
+      <span class="sub goldtext">A Stepping Stone to a Brighter Future</span>
       <!-- Logo badge: shows these one by one. Put the image files in the banner/ folder.
            In PHP you can build this list with scandir('banner'). -->
       <div class="logoshow" aria-live="polite">
